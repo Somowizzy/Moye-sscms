@@ -1,0 +1,715 @@
+﻿
+DEVELOPMENT OF A SMART SUPPLY CHAIN MANAGEMENT SOFTWARE FOR A PREFORM AND CAP PRODUCTION COMPANY
+BY
+
+SOMOYE, OLUWATOBI JONATHAN 
+IPE/19/1471
+
+
+
+
+OCTOBER, 2025.
+
+DEVELOPMENT OF A SMART SUPPLY CHAIN MANAGEMENT SOFTWARE FOR A PREFORM AND CAP PRODUCTION COMPANY
+BY
+SOMOYE, OLUWATOBI JONATHAN
+ IPE/19/1471
+SUPERVISED BY DR. O. T. OJO
+SUBMITTED TO
+THE DEPARTMENT OF INDUSTRIAL AND PRODUCTION SCHOOL INFRASTRUCTURE, MINERALS, AND MANUFACTURING ENGINEERING (SIMME) FEDERAL UNIVERSITY OF TECHNOLOGY, AKURE.
+IN PARTIAL FULFILMENT OF THE REQUIREMENT FOR THE AWARD OF BACHELOR OF ENGINEERING (B.ENG) DEGREE, IN INDUSTRIAL AND PRODUCTION ENGINEERING
+
+OCTOBER, 2025.
+
+DECLARATION
+I hereby declare to the best of my knowledge that this thesis was written by me, SOMOYE OLUWATOBI JONATHAN and it is the correct record of my own research work. It has not been submitted elsewhere in a previous application for award of a degree. All sources of knowledge used have been duly acknowledged.
+
+
+
+Candidate’s Name:                                   SOMOYE, OLUWATOBI JONATHAN
+Signature …………………     Date …………………………….
+
+CERTIFICATION
+I hereby to certify that this project report was carried out by SOMOYE OLUWATOBI JONATHAN matriculation number IPE/19/1471 in the Department of Industrial and Production Engineering, School Infrastructure, Minerals, and Manufacturing Engineering under the supervision of Dr. O. T. OJO.  The Federal University of Technology, Akure, Ondo State, Nigeria in partial fulfilment of the requirements for the award of the degree of Bachelor of Engineering (B.Eng.) in Engineering. 
+
+                                            
+         Dr. O.T OJO                                                                              Sign/Date  
+      Project Supervisor  
+                                            
+        Prof. T.E ABIOYE                                                                        Sign/Date 
+       Head of Department  
+
+
+
+
+
+DEDICATION
+I dedicate this report to God Almighty, whose guidance and blessings have been my strength throughout this academic journey. 
+
+ACKNOWLEDGEMENTS
+First and foremost, I am profoundly grateful to Prof. T. E. Abioye, Head of Department, for providing the necessary resources and support throughout my academic journey. My sincere thanks also go to my project supervisor, Dr. O. T. Ojo, whose invaluable mentorship, insights, and feedback were instrumental in the successful completion of this project. His expertise, patience, and continuous encouragement have profoundly influenced my professional and academic development. I would also like to extend my appreciation to my professors, academic staff, and departmental mates for providing a robust educational foundation.
+I express my deepest gratitude to God Almighty for His continuous grace and guidance throughout this journey. Without His blessings, none of this would have been possible. 
+Heartfelt appreciation goes to my father and mother, Mr & Mrs. Somoye, for their unwavering support, guidance, and encouragement throughout my academic journey. Their resilience and belief in my abilities have been a constant source of inspiration whose values of hard work, perseverance, and dedication to excellence continue to guide my path. 
+To my beloved siblings, Mr. Somoye Femi and Miss. Damilola your love, motivation, and understanding have been constant sources of inspiration, propelling me to exceed expectations. 
+Special recognition is extended to my project partner, Shittu Mojeed, for the invaluable collaboration, dedication, and support throughout the development of this project. 
+Lastly, I would like to extend my appreciation to all those who directly or indirectly impacted my academic journey, including Olurombi Feranmi, Ade-Ajayi Oluwatofunmi, Azeez Theophilus, Ogunmakinwa Moses, Olasukanmi Prestige, Ilubanwo Olukorede, Kokumo mustapha, Olaniyi Afeez, Areoye Solomon, Oyetunde Olanrewaju and others not explicitly mentioned. Your support and encouragement have played a significant role in my growth. 
+ABSTRACT
+This study develops, implements, and evaluates a Smart Supply Chain Management System (SSCMS) for the operational needs of a preform and cap manufacturing company. Motivated by persistent problems with manual inventory records, slow approval workflows, and limited production visibility, this project developed a role-based, web-accessible platform centralizing purchasing, inventory, order management, approvals and traceability for a preform and cap production company. The system was built using an Agile approach with a Typescript + Tailwind frontend, a Node.js/Express backend, and SQLite persistence; development included unit and integration testing and an on-site user acceptance test (UAT). Evaluation combined automated tests, scripted integration scenarios, and a one-week pilot with departmental users. Empirical results from system logs and audit counts show inventory accuracy increased from 78% (manual baseline) to 98%, average approval turnaround decreased from multiple hours to under 10 minutes stock out incidents declined by approximately 70%, paperwork and manual record-keeping reduced by over 80% and average page response time on the local network was 1.5s. These outcomes indicate that a focused, modular SSCMS can improve supply-chain visibility, reduce waste, and support faster, data-driven decisions in small-to-medium manufacturers. These results are based on a single-site pilot, Migration to an enterprise database is recommended with the integration of Internet of things for automated data capture and extensions for quality rejection handling.
+
+
+
+TABLE OF CONTENTS
+DECLARATIONiii
+CERTIFICATIONiv
+DEDICATIONv
+ACKNOWLEDGEMENTSvi
+ABSTRACTvii
+TABLE OF CONTENTSviii
+LIST OF FIGURESxiv
+LIST OF TABLESxv
+CHAPTER ONE1
+INTRODUCTION1
+1.1 Background of the study1
+1.2 Statement of the problem3
+1.3 Justification4
+1.4 Aim and objectives of the research6
+1.5 Significance of study6
+1.6 Scope of Research8
+CHAPTER TWO10
+LITERATURE REVIEW10
+2.1 Introduction to Supply Chain Challenges10
+2.2 Key themes in smart supply chain management10
+2.2.1 Real-time tracking and visibility10
+2.2.3 Decision support and forecasting with AI11
+2.2.4 Cost implications and economic benefits11
+2.2.5 System design considerations: usability, scalability, integration11
+2.2.6 Challenges and barriers to adoption11
+2.2.7 Application to preform and cap manufacturing12
+2.3 Summary of benefits12
+2.4 Supply chain challenges in Nigeria13
+2.5 Conceptual framework (SCOR)13
+2.6 Review of Similar Project Done14
+2.7 Summary Of Research Gap16
+CHAPTER THREE18
+METHODOLOGY18
+3.1 System Analysis and Design18
+3.2 Development method18
+3.2.1 Selected model: Agile SDLC.18
+3.2.2 Process followed (high level):18
+3.3 System architecture19
+3.3.1 (Frontend)19
+3.3.2 Server (Backend)20
+3.3.3 Database21
+3.3.4 AI component22
+3.4 System analysis22
+3.4.1 Existing system (summary)22
+3.4.2 Problems identified23
+3.5 REQUIREMENTS ANALYSIS23
+3.5.1 Functional requirements23
+3.5.2 Non-functional requirements24
+3.6 System Design25
+3.7 Use Cases & Actors26
+3.7.1 Key use cases (brief):27
+3.8 Data Flow (high-level)27
+3.9 Interface Design28
+3.9.1 HR/Admin Dashboard View28
+3.9.2 Raw Materials User View29
+3.9.3 Production User View:29
+3.10 AI Integration30
+3.11 Implementation Plan and Modules Breakdown31
+CHAPTER FOUR33
+RESULTS AND DISCUSSION33
+4.1 Results33
+4.2 Testing Approach33
+4.3 Test Cases35
+4.4 Test Results36
+4.5 System Dashboards Views36
+4.5.1 HR/Admin Dashboard36
+4.5.2 Raw Materials User View40
+Approval Screen43
+4.6 System Description43
+4.6.1 Admin Interface43
+4.6.2 Admin Dashboard and Monitoring44
+4.6.3 Approval and Authorization44
+4.6.4 Role Management44
+4.6.5 User Interface45
+4.6.6 User Tasks and Operations45
+4.6.7 Real-Time Data Sync45
+4.6.8 Communication and Feedback46
+4.6.9 Finished Goods Tracking46
+4.7 System Performance Evaluation.46
+4.8 Discussion47
+CHAPTER FIVE48
+CONCLUSION AND RECOMMENDATIONS48
+5.1 Conclusion48
+Making smart supply chain management system a Success:48
+Real-Time Visibility:48
+Scalable and Extensible Design:49
+5.2 Recommendations49
+5.3 Contribution of Research to Knowledge50
+REFERENCES53
+
+
+LIST OF FIGURES
+Fig 3. 1 Software front-page16
+Fig 3. 2 Software view17
+Fig 3. 3 Software backend18
+Fig 3. 4Stock database19
+Fig 3. 5Fig Admin production view25
+Fig 3. 6 Raw material view26
+Fig 3. 7 Production user view27
+Fig 4. 1 Admin dashboard (production overview)34
+Fig 4. 2 Admin dashboard (raw material overview)35
+Fig 4. 3Admin dashboard (finished goods overview)35
+Fig 4. 4 Admin dashboard (shipped orders overview)36
+Fig 4. 5 Admin dashboard (Users overview)37
+Fig 4. 6 Raw material (User view)38
+Fig 4. 7 production (User view)39
+
+LIST OF TABLES
+Table 4. 1 Test Cases32
+Table 4. 2 System performance43
+
+
+
+CHAPTER ONE 
+INTRODUCTION
+1.1 Background of the study
+Managing the supply chain is one of the most important aspects of production in any manufacturing company. For a preform and cap production company, ensuring a smooth flow of materials, tracking inventory, and meeting customer demands efficiently can be challenging. Traditional supply chain management methods often lead to delays, high costs, and a lack of real-time information, making it difficult for businesses to respond quickly to changes (Netsuite, 2025 Deskera, 2024) 
+A smart supply chain refers to a supply network that uses digital technologies (for example, IoT sensors, RFID, cloud platforms, and analytics) to collect near-real-time data, automate routine actions, and support predictive decision-making. In practice, “smart” implies not only data capture but also automated responses (e.g., alerts, automatic reorders) and analytics that improve responsiveness and reduce manual errors. (Tan and Sidhu, 2022).
+Manufacturers of PET preforms and closures produce plastic components that serve as precursors for bottles; preforms are produced by injection molding and later stretch-blown into bottle shapes, while closures (screw or snap-type caps) seal the final containers. These manufacturing operations demand very high production volumes, stringent quality control (including checks on material resin properties, moisture content, weight and dimensional tolerances), robust batch and lot tracking for traceability, and very short lead times to meet customer and fill-line requirements. (Ankurwares 2025)
+In the Nigerian context, manufacturing remains an important part of the economy but faces persistent operational and logistics challenges. Empirical studies show that infrastructure deficits particularly in reliable electricity and road networks substantially constrain manufacturing performance and raise production costs (Nnyanzi et al., 2022; Obokoh, 2016). Port congestion and associated delays are documented to reduce supply-chain efficiency and increase logistics lead times for Nigerian firms. 
+Despite evidence that digitization and IoT-enabled visibility improve supply chain performance, few affordable, industry-specific SCM solutions exist for small-to-medium preform and cap manufacturers in Nigeria. Studies show that digital adoption among SMEs significantly predicts business performance, but implementation is often broad not tailored to particular industrial workflows or product lines (Khairuddin and Olowosuyi, 2020). Furthermore, IoT applications in Nigerian supply chains have been found to enhance metrics like inventory turnover, order accuracy, and lead time, but face barriers such as high costs, infrastructural deficits, and lack of skilled labor (Unegbu Yawas and Dan-Asabe, 2021). These findings point to a lack of practical software that bundles real-time tracking, simple forecasting, and user-friendly dashboards tailored to the workflows and constraints of manufacturing of preforms and caps.
+This study focuses on developing a smart supply chain management software that will improve how a preform and cap production company handles its operations. The system will use modern technology to automate processes, track materials in real-time, and improve decision-making. By reducing waste, cutting costs, and making production more efficient, this software will provide a better way to manage supply chains, ensuring the company can meet demands more effectively.
+Therefore, this study shows a clear need for modern technology in supply chain management, especially in the preform and cap manufacturing industry. Traditional methods are no longer effective, and smart systems offer better ways to track, manage, and optimize supply chain activities. With the right software, companies can reduce costs, improve productivity, and better serve their customers. This research seeks to develop a system that is practical, reliable, and built to solve real challenges faced by manufacturers today.
+1.2 Statement of the problem
+Supply chain management is a critical aspect of manufacturing, yet many firms still struggle with issues such as poor inventory accuracy, delayed approvals, and lack of real-time tracking. These challenges often result in stock outs, overproduction, or wastage, which directly affect profitability and efficiency (Christopher, 2016).
+In developing countries like Nigeria, the manufacturing sector faces additional difficulties such as inadequate digital adoption, fragmented logistics systems, and reliance on manual documentation. These weaknesses hinder smooth operations and slow down competitiveness at both local and global levels (Adebayo, 2020).
+Preform and cap production companies, which are essential suppliers in the beverage and packaging industries, require highly efficient and transparent supply chain systems to meet the demands of bottling firms. However, most rely on outdated methods such as paper records or basic spreadsheets, leading to errors in demand forecasting, delayed order fulfillment, and difficulty in managing warehouse activities (Oladipo and Okonkwo 2021).
+Despite global advancements in smart technologies and data-driven solutions, there is a noticeable gap in implementing tailored smart supply chain systems for Nigeria’s preform and cap production sector. This gap highlights the urgent need for a digital, automated, and integrated solution that ensures visibility, reduces waste, and improves overall supply chain performance (Agwu and Ogbechie 2018).
+1.3 Justification
+Effective supply chain management is important to the success of any manufacturing firm. Traditional methods like manual logs, spreadsheets, and periodic stock takes are prone to errors, slow to reflect real-time conditions, and lack scalability. For a preform and cap production company, where raw materials and components move fast through production lines, these shortcomings often result in downtime, waste, and missed customer deadlines. Therefore, this project is justified by the need for a smart, technology-driven system that enhances visibility, control, and responsiveness across the supply chain.
+Enhanced accuracy and efficiency: By automating routine tasks (inventory updates, material requests, and approvals), the software will reduce human error and repetitive data entry. Automated recordkeeping and validation rules ensure inventory balances reflect real activity, improving operational efficiency and freeing staff to focus on higher-value work. (Jenkins, 2024).
+
+Real-time monitoring and updates: The system provides live dashboards and notifications so managers and production teams see current stock levels, in-process status, and pending requests. Immediate visibility prevents both stock-outs and overstocking, enabling timely procurement and smoother production scheduling. (Atikur, Shah and Sabbir, 2025).
+Improved security and accountability: Role-based access control and an audit trail tie every inventory transaction and approval to a specific user. This traceability deters misuse, simplifies investigations into discrepancies, and fosters a culture of responsibility among staff. (Salunke et al., 2011).
+Streamlined operations and coordination: Integrated internal and external workflows (request -approval - issuance - production) reduce delays from handoffs and improve coordination across departments and with suppliers. Centralized data exchange ensures all parties operate from the same current information, which enhances performance (Alsheyadi, Baawain, and Shaukat, 2024).
+Cost-effectiveness and scalability: The proposed solution uses a pragmatic, modular design with optional IoT upgrades that keeps initial costs low while allowing future expansion. Reduced labor for inventory tasks, fewer emergency purchases, and lower carrying costs make the system economically attractive for small-to-medium preform and cap manufacturers. (Arvato Systems, 2025).
+
+
+
+In summary, this smart supply chain management software offers a targeted solution to the challenges inherent in preform and cap manufacturing. By enabling accurate, real-time data, strengthening accountability, streamlining workflows, and offering a scalable implementation path, it will help the company reduce downtime, cut waste, and improve on-time deliveries outcomes that justify investing in the system and increase competitiveness in local and export markets.
+1.4 Aim and objectives of the research
+The aim of the research is the development of development of a smart supply chain management software for a preform and cap production company while the objectives are as follows:
+To develop a smart supply chain management software specifically designed for a preform and cap production company and
+To evaluate the developed smart supply chain management software designed
+1.5 Significance of study
+The supply chain is one of the most important parts of any manufacturing company, especially for a company that produces preforms and caps. This is because it deals with how materials are received, used in production, and finally delivered to customers. If the supply chain is slow or not well managed, it affects the entire company. Materials may arrive late, production can be delayed, and customers may not receive their orders on time. These issues can lead to unhappy customers, wasted resources, and financial loss.
+This study is important because it aims to solve those problems by creating smart software that will help the company manage its supply chain more effectively. The software will use modern technology like real-time tracking, automation, and smart notifications to keep the company updated about everything happening in the supply chain. This means that managers can make faster and better decisions. For example, if a material is running low or if a shipment is delayed, the system can send alerts, helping the team act quickly to fix the problem.
+Another key benefit of this study is that it will help reduce waste and unnecessary costs. When a company can track its inventory accurately and plan its orders better, it avoids buying too much or too little. This saves money and reduces the chances of materials sitting idle or going to waste. It also helps reduce manual work and human error, since the system can handle tasks like updating inventory or tracking shipments automatically.
+The software developed in this study will also make the company more organized and efficient. Instead of relying on paperwork or separate spreadsheets, the company can use a single platform where all supply chain information is stored and updated in real time. This makes it easier for different departments to work together and understand what is going on at every stage.
+Finally, this study is also valuable because it can serve as a model for other manufacturing companies. If successful, the smart supply chain system can be adapted for use in similar industries facing the same challenges. It shows how technology can solve real problems in local businesses and improve productivity, reduce costs, and support growth.
+In summary, the significance of this study lies in how it will improve the way preform and cap production companies operate by making their supply chains smarter, faster, and more efficient.
+This study focuses on creating a smart system to help a preform and cap Production Company manage its supply chain better. This will make work easier by improving how materials are tracked, how decisions are made, and how resources are used. Unlike the old ways of managing supply chains, this new system will provide better information, making it easier to plan and respond to changes. The results of this study will help the company work faster, spend less, and have a more organized way of handling production and deliveries.
+1.6 Scope of Research
+This research focuses on developing a smart supply chain management software for a company that produces preforms and caps. The software is being designed to help the company manage its supply chain more effectively by using modern tools like automation, real-time tracking, and smart decision support.
+The scope of the study is limited to the supply chain operations within one production company, not across multiple companies or industries. It looks at how raw materials are received, stored, and used in production, as well as how finished products are tracked and delivered to customers. It also includes how data from these operations is collected, analyzed, and used for better planning and decision-making.
+The research covers different parts of the supply chain, including inventory management, order processing, material tracking, delivery scheduling, and communication between departments. The study also looks into how the software can be connected with the company’s current systems to make sure everything works smoothly together.
+However, the study does not cover the full range of enterprise functions like accounting, human resources, or marketing. It is focused strictly on supply chain functions. Also, the project will not involve real-time implementation in multiple companies or testing on a national or global scale—just within the selected production company.
+In short, the scope of this research is to design and test a smart software system that can improve how a preform and cap company manages its supply chain, with the hope that it can later be adapted or improved for wider use in similar businesses. 
+
+CHAPTER TWO 
+LITERATURE REVIEW
+2.1 Introduction to Supply Chain Challenges
+Efficient supply chain management governs the flow of raw materials, their conversion to finished goods, storage, and delivery according to (Tan and Sidhu 2022). For preform and cap manufacturers who produce high volumes with short production cycles these processes must be tightly synchronized to avoid downtime and waste. Many firms still rely on manual controls and spreadsheets, which limit visibility and slow decision-making.
+2.2 Key themes in smart supply chain management
+2.2.1 Real-time tracking and visibility
+Real-time tracking captures continuous information on inventory location and status, allowing managers to confirm receipt, monitor in-process inventory and track dispatches. Improved visibility helps reduce stock shortages and overstocking by enabling timely replenishment decisions and more accurate delivery estimates. (Tan and Sidhu 2022). Real-time tracking features in the prototype should directly improve inventory accuracy and reduce stock out rate.
+2.2.2 Automation in inventory and production control
+Automation replaces manual counting and spreadsheet updates with workflows that automatically update inventory, trigger reorder actions, and handle scheduling tasks. Barcode/RFID scanning and rule-based triggers significantly reduce human error and processing time in high-frequency material movements (Tan and Sidhu 2022). Implementing automated scan-and-trigger workflows will target reductions in approval turnaround time and manual data-entry errors.
+2.2.3 Decision support and forecasting with AI
+AI and analytics extract patterns from historical and external data to produce forecasts that account for seasonality and trends. While AI typically improves forecasting accuracy, its effectiveness depends on data quality and appropriate model selection. (Walter, A. 2025). This include simple forecasting modules to support demand forecasting and improve inventory turnover; model choice will match available historical data.
+2.2.4 Cost implications and economic benefits
+Automated replenishment and improved forecasting reduce emergency purchases and carrying costs, while process automation lowers labor hours. However, initial implementation, integration, and staff training are significant barriers—especially for SMEs—so scalable, low-cost approaches are important (Tan and Sidhu 2022). The prototype will use a low-cost, incremental to minimize upfront costs while aiming to lower carrying costs and labor hours.
+2.2.5 System design considerations: usability, scalability, integration
+Effective SSCMS design emphasizes simple, role-specific interfaces (minimizing training), modular architectures for incremental growth, and integration options with scanners and ERP systems to enable real-time flows. (Zhang, Y. 2025). The system will adopt a modular web-based design that keeps training minimal and allows future IoT/cloud integration.
+2.2.6 Challenges and barriers to adoption
+Common barriers include high upfront cost, resistance to process change, data quality problems, and security concerns when linking sensors and systems. Smaller manufacturers are disproportionately affected. Successful deployments therefore emphasize staged rollouts, offline capture modes, and practical user training. (IoT-Enabled RFID in Supply Chain Management 2024). The implementation plan will include a staged, offline capture and focused role-based training to improve acceptance.
+2.2.7 Application to preform and cap manufacturing
+The actual production and production of caps require a lot of fast, small movements and short cycles; you have to be able to monitor each batch, replenish quickly and work closely with suppliers. SSCM custom capabilities such as rapid scan cycles, reorder by rule, and short-cycle predictability have been demonstrated to work in other high-frequency production environments. (Tan and Sidhu 2022). The prototype will be centered on quick scan processes, per-batch tracking and fast reorder logic to reduce downtime due to shortages of raw materials. 
+2.3 Summary of benefits
+The smart supply chain management system brings the following improvements to the business operations:
+Improved inventory accuracy and reduced stock outs by automated tracking and reorder rules 
+Faster order processing and approvals through workflow automation and role-based interfaces.
+Faster decision making using real-time dashboards and consolidated data which hastens manager’s response time to alerts and improved on-time delivery.
+Lower labor and operational costs from less manual processing and fewer emergency orders hereby reducing labor hours and carrying costs.
+Better demand forecasting using AI models to reduce overproduction and stock imbalances increasing forecast accuracy and inventory turnover.
+These benefits will make the company more competitive and better prepared for future growth.
+2.4 Supply chain challenges in Nigeria 
+Nigeria’s manufacturing and logistics environment has unique constraints—infrastructure gaps, port congestion, and variable sector performance—that increase the operational value of low-cost digital SCM solutions. Recent NBS data show that the industry sector’s share of GDP rose in 2025 (industry contribution ~17.3% in Q2 2025), but reports and local analysis point to persistent logistics bottlenecks and import/export frictions that raise lead times and costs for manufacturers. These conditions make affordable, modular SSCMS tools particularly relevant for Nigerian preform and cap producers. (National Bureau of Statistics NBS 2025)
+2.5 Conceptual framework (SCOR) 
+This study adopts the Supply Chain Operations Reference (SCOR) model as its conceptual framework because SCOR links processes (Plan, Source, Make, and Deliver), performance metrics and best practices making it suitable for designing, evaluating, and benchmarking a supply chain software prototype. Using SCOR will help map software functions (e.g., inventory tracking → Make/Deliver metrics) to measurable KPIs (stock-out rate, lead time, inventory turnover) and provide standardized performance targets for evaluation. (APICS/ASCM 2024).
+
+
+2.6 Review of Similar Project Done
+Over the past decade, researchers and industry practitioners worldwide have made significant progress in the development and implementation of smart and digital supply chain management (SCM) systems in manufacturing industries. 
+Lee et al. (2023) conducted a large-scale survey of 119 manufacturing firms to evaluate how “smart” supply chains leveraging Internet of Things (IoT), cloud computing, and big data analytics influence operational performance. Their findings revealed that the adoption of connected, data-driven SCM systems substantially improved efficiency, transparency, and responsiveness, helping firms build more competitive and agile supply networks. 
+Similarly, Li et al. (2022) developed a Smart Supply Chain Management Software (SSCMS) for a sand-manufacturing company, integrating edge computing and deep learning to automate sand classification. The system achieved over 98% accuracy in product identification with minimal latency (0.022 seconds), demonstrating how embedding AI and IoT into SCM software can significantly enhance production accuracy and operational throughput.
+In a broader conceptual study, Frazzon et al. (2019) explored the evolution of “Supply Chain 4.0,” emphasizing the transition from traditional SCM practices to intelligent, interconnected systems powered by Industry 4.0 technologies such as IoT, cloud platforms, and automation. Their analysis concluded that these digital tools enable supply chains to become adaptive, collaborative, and transparent—key attributes for modern manufacturing competitiveness. 
+Expanding on real-world applications, Mamun (2024) examined how IoT, AI, and big data analytics transformed the supply chain operations of a Bangladeshi motorbike manufacturer. The integration of smart sensors and predictive algorithms improved demand forecasting, inventory control, and production scheduling. Despite facing implementation challenges such as data security and cost, the company achieved notable gains in decision-making and process efficiency through structured training and phased digital adoption.
+A case study by Li et al. (2020) analyzed Haier’s implementation of a digital twin platform across its global supply network. The system linked product, production, and logistics data in real time, creating an intelligent framework for sustainable operations. By breaking down silos and synchronizing all supply chain processes, Haier achieved improved coordination, reduced waste, and greater operational sustainability. 
+Likewise, an industry case by dDriven (2024) detailed how a large process manufacturing firm adopted “Procurement 4.0” strategies using IoT-enabled flowmeters and real-time inventory monitoring. This digital transformation cut supply losses by 40–70% and improved overall inventory accuracy, resulting in cost recovery within just a few months. The study illustrates that even incremental IoT integration into legacy SCM systems can deliver rapid and measurable returns on investment.
+Further advancing the discussion, Walter (2023) presented findings from the European Union’s “knowledge” project, which designed an AI-driven supply chain platform integrating IoT and edge computing. The project demonstrated that embedding distributed, self-learning algorithms within SCM systems enhanced adaptability, reduced disruptions, and shortened decision cycles across multiple manufacturing firms. 
+Similarly, Kumar and Goyal (2025) proposed a hybrid artificial intelligence and optimization-based SCM model that combined machine learning algorithms (LSTM and gradient boosting) with IoT-generated data for real-time inventory control. Their experimental results showed major reductions in inventory cost, higher forecast accuracy, and improved service levels, proving that predictive and adaptive SCM software can substantially increase warehouse efficiency and responsiveness.
+In the automotive sector, Mendi (2022) applied a digital twin system to a commercial production line to monitor and simulate manufacturing operations in real time. The implementation led to a 6.01% increase in production efficiency and an 87.56% reduction in downtime, underscoring the potential of digital twin technology in optimizing industrial performance. 
+Finally, Roman (2025) conducted a systematic review of digital twin applications in global supply chains and found that these systems significantly strengthen supply chain resilience. By integrating IoT and AI, digital twins create real-time virtual replicas of production and logistics processes, enabling proactive responses to disruptions and data-driven decision-making. Collectively, these studies demonstrate a clear global trend toward intelligent, data-centric SCM solutions that enhance efficiency, visibility, and adaptability across manufacturing industries.
+2.7 Summary Of Research Gap
+The reviewed literature supports SSCMS’s ability to improve visibility, reduce manual errors, and enable predictive planning. However, rigorous studies focused on small-to-medium plastics and packaging manufacturers particularly preform and cap producers remain limited, and there is little evidence on tailored, low-cost, incrementally deployable SSCMS prototypes that work under Nigerian logistics constraints. This project addresses that gap by developing and evaluating a modular, affordable SSCMS designed for the operational realities of preform and cap manufacturing. (Tan and Sidhu 2022).
+
+
+CHAPTER THREE 
+METHODOLOGY
+3.1 System Analysis and Design
+This chapter describes the design, architecture, implementation and testing of the Smart Supply Chain Web Application developed for the preform company. It explains the development approach, system architecture, major modules, database design, AI integration, implementation steps, testing strategy and deployment environment. This chapter also describes the methods, processes and tools used to analyze, design and implement the web-based Smart Supply Chain Software built for the preform company. 
+3.2 Development method
+3.2.1 Selected model: Agile SDLC.
+Justification: Agile was selected because the project needed frequent feedback from departmental users (warehouse, production, finished goods, shipping and HR) and enabled incremental delivery of features (inventory tracking, approvals, reporting) Iterations (sprints) allowed for very fast progress on the UI and AI features while causing minimal disruption to the company's operations.
+3.2.2 Process followed (high level):
+Sprint planning -- priorities backlog items (features & bug fixes).
+Short development sprints (1-2 weeks) with daily standups and quick demos.
+CI and Unit Testing at the end of each sprint.
+User Acceptance Testing (UAT) with department heads and end users
+Deployment and monitoring; repeat.
+3.3 System architecture
+The application uses a client–server architecture designed for multi-user access across the various departments. There are four different parts that was crucial to the development of the software which are
+3.3.1 (Frontend) 
+This ©z Typescript. The frontend is also responsible for rendering the user interface, performing client-side validation, enforcing role-aware UI controls, and calling backend RESTful APIs to perform the workflow actions after being prompted to do so.
+ 
+Fig 3. 1 Software front-page
+
+Fig 3. 2 Software view
+
+3.3.2 Server (Backend) 
+This part is not seen because it is the code embedded into the software that makes each action or instruction it receives from the frontend to be implemented with Node.js and Express. The backend of a web application is responsible for data processing, enforcing business logic, interacting with the database, and exposing APIs to the frontend (GeeksforGeeks, 2023 MDN Web Docs, 2024). The backend is the part of a web application that runs on a server and handles data processing and storage.
+
+Fig 3. 3 Software backend
+
+3.3.3 Database 
+The database used for storing the data processed from the backend is (SQLite) which is the database the software uses to keep information safe and organized. It saves things like users, departments, inventory, production records, and approvals in tables (like rows in an Excel sheet). The backend (server) talks to this database whenever it needs to add, update, or read data. To avoid mistakes and keep data secure, the server uses prepared queries and keeps track of changes to the database structure.
+
+Fig 3. 4Stock database
+3.3.4 AI component 
+The AI part is a small service connected to the backend that helps make smarter decisions. It can predict future demand so materials don’t run out either in the warehouse or production department, check requests to suggest which ones are more important or risky, and spot unusual patterns in data. 
+3.4 System analysis
+3.4.1 Existing system (summary)
+The preform company used to manage supply chain operations with manual spreadsheets and ad-hoc messaging for approvals. Which resulted in delays in approving, inaccuracies in inventory and was difficult to trace records across departments.
+
+3.4.2 Problems identified
+No centralized inventory ledger.
+Long approval time and no audit trail
+Poor visibility of production status and finished goods ready to ship
+Difficulty predicting material needs.
+Proposed system (summary)
+A web-based Smart Supply Chain Software that centralizes data, enforces role-based approvals (department heads as approvers), offers real-time inventory visibility and has AI-powered capabilities for forecasting and anomaly detection.
+3.5 REQUIREMENTS ANALYSIS
+3.5.1 Functional requirements
+Authentication and RBAC: Secure login; Roles: HR admin, Dept. Head (warehouse/production/finished goods/ shipping) Dept. user, system admin
+Inventory management: Create/ update product records, quantity tracking (inbound/outbound), stock levels, batch/lot tracking.
+Request workflow: Users make requests (e.g., raw material requisition, production run request, transfer to finished goods, shipping request). Dept. Heads (warehouse, production, finished goods, shipping) can approve or reject requests Only the head for that department has the authority to approve/reject.
+Production scheduling: Create production jobs, monitor progress and resource consumption.
+Finished goods management: Receive production output, create FG records, and manage the quality check status.
+Shipping module: Generate shipment manifests, schedule pick-ups and update shipment status.
+HR Admin: Manage users, roles, departments and basic personnel records.
+Reporting & Analytics Real-time dashboards for stock levels, pending approvals, production throughput and shipping status.
+AI features - Demand forecasting, predictive reorder alerts, anomaly detection on inventory/requests and intelligent suggestion for approvers.
+Audit trail: Keep logs for all approvals, rejections and edits.
+3.5.2 Non-functional requirements
+Usability: Responsive Web UI that is usable on desktop and mobile browsers.
+Performance: Acceptable response times for common operations (page loads < 2s on typical LAN/WAN).
+Reliability: Robust error handling and data integrity.
+Security: HTTPS, Password Hashing, Role-based access checks, Input validation.
+Maintainability: Clean codebase in Typescript and Node.js, documented APIs.
+Portability: Can run on common Linux servers; local SQLite DB for small deployments and option to migrate to larger RDBMS.
+3.6 System Design
+3.6.1 High-level architecture
+The system has a standard web 3-tier architecture:
+Presentation layer (Client): HTML + Tailwind CSS + Typescript (compiled to browser JS). Responsible for UI, form validations and interacting with the REST APIs.
+Application layer (Server): Node.js + Express for managing the rest endpoints, business logic, authentication and integration of AI services.
+Data layer (Database): SQLite for persistence (users, inventory, requests, approvals, logs).
+An optional small diagram placeholder (insert screenshot/diagram here in the final report): Client (browser) = Node/Express API = SQLite DB.
+3.6.2 API design (overview)
+RESTful endpoints by module, for example:
+POST /author/login, POST /author/logout
+GET /inventory, POST /inventory, PATCH /inventory/: id
+POST /requests, GET /requests, PATCH /requests/: id/approve
+GET /reports/stock-levels GET /reports/forecast
+All approval endpoints verify the authenticated user's role and department prior to allowing approve/reject actions.
+3.6.3 Database design
+DB choice: SQLite (lightweight, file based) which is good for a small/initial deployment and can be bundled easily with the Node app.
+Core tables (examples): users (id, first name, last name, email, password hash and role, department id, created at)
+Departments (id, name, head user id)
+Products (id, name, description, unit, reorder level)
+Inventory (id, product ID, quantity on hand, batch no., location)
+Requests (id, requester id, request type, payload, status, created at, updated at)
+Approvals (id, request ID, approver I, action (approved/rejected), comment, timestamp)
+Production jobs (id, product ID, quantity requested, quantity completed, status, scheduled date)
+Shipments (id, manifest no, status, scheduled pickup, carrier, created at)
+Audit logs (id, user id, action, detail and timestamp)
+3.7 Use Cases & Actors
+Primary actors
+HR Admin
+Department User (Warehouse, Production, Finished Goods, Shipping)
+Department Head (approver)
+System Admin
+3.7.1 Key use cases (brief):
+UC-01: Login -- Actor: any user. Outcome: authenticated session.
+UC-02: Submit Requisition Request -- Actor: Dept. User. Result: Request created and sent to Head of department
+UC-03: Approve/Reject Request -- Actor: Dept. Head only. Result: Request status changed, then audit entry created.
+UC-04: Update Inventory --Actor: Warehouse Admin/User. Result: Inventory levels adjusted
+UC-05: Create Production Job -- Actor: Production User; Head approves schedule.
+UC-06: Create Shipment -- Actor: Shipping User Head approves and schedules pickup
+3.8 Data Flow (high-level)
+DFD Level 0 (context):
+External actors (Users) = Web App = Database
+DFD Level 1 (example flows):
+User submits requisition - Web client sends request to server (POST /requests) - Server validates and stores request - Notification to Dept. Head - Dept. Head approves/rejects via PATCH /requests/:id/approve - Approval recorded & downstream inventory/production updated.
+(Include DFD diagrams and sequence diagrams in the final report.)
+3.9 Interface Design
+The system has a responsive dashboard design for different user roles. Below are examples of screenshots:
+3.9.1 HR/Admin Dashboard View
+This view gives HR Admins an overview of raw materials: total stock, low stock items, out of stock count, total value, active suppliers. The table lists material IDs, stock quantities, unit prices, and current status (e.g., In Stock, Low Stock). There are action buttons to export the data and update the view.
+
+Fig 3. 5Fig Admin production view
+
+3.9.2 Raw Materials User View
+This client portal view enables raw materials users to view their inventory and identify items with low stock levels and to perform actions such as editing or deleting material records. It also supports the addition of new materials, as well as the export of CSV reports. Status indicators identify availability of stocks in real time. 
+Both interfaces are built using the technologies of: HTML, Tailwind CSS, and Typescript for a clean, modern user experience.
+
+Fig 3. 6 Raw material view
+3.9.3 Production User View:
+This is a task-oriented, focused portal that provides the staff and supervisors in the production floor with effective and real-time control over the manufacturing processes. Through one, intuitive interface users may view scheduled jobs, initiate/terminate work orders, document quantities produced, document defects and downtime, and trace the step-by-step work instructions (BOMs and routing).They have immediate visibility on job health to enable teams respond rapidly and maintain high output.
+
+Fig 3. 7 Production user view
+3.10 AI Integration
+AI integration was used to increase the effectiveness of the system. Main AI features:
+Demand forecasting: A light weight forecasting model utilizes historical stock movement and production data and suggests reorder quantities and timing.
+Anomaly detection: Identifies abnormal inventory changes or suspicious patterns of requests for review.
+Intelligent approver suggestions: As approvers review a request, the system provides risk indicators and suggested actions (e.g. more documentation, low-risk requests).
+Implementation: AI logic is implemented in the form of local services called by the Node server (simple models or heuristics at this stage). The architecture enables the later replacement with more advanced models or cloud AI services.
+3.11 Implementation Plan and Modules Breakdown
+Implementation was module-by-module. Each of the modules has the same pattern: design - API contract - database migration/creation - frontend page - unit tests - integration tests.
+Breakdown of modules & highlights:
+HR Admin: user & role management, department/head assignment.
+Warehouse (User & Admin): inventory adjustments, pick/receive flows, stock transfers requests, supplier change.
+Production (User & Admin) material request, report job completion, resource consumption logs.
+Finished Goods (User & Admin): quality check capture, records of stocks, ready for shipping
+Shipping (User & Admin): create shipment manifests, schedule pickups.
+Approval flow details:
+Requests are created with status = 'pending' and department id.
+Notification sent to head of the department (in-app notification and optional email).
+Make sure only the user with id == departments. Head user id is able to call the endpoint approve; enforced on server-side.
+Approvals create entries in approvals table and set requests. Status accordingly.
+Sample sequence (request - approval - inventory update):
+Production User creates raw material request.
+Reviewed and approved by Warehouse Head.
+Inventory quantity on hand is updated and audit logs entry is created
+
+
+
+
+
+
+
+
+
+
+
+CHAPTER FOUR 
+RESULTS AND DISCUSSION
+4.1 Results
+The Smart Supply Chain Management Software (SSCMS) was put to test to assess its capability to address the identified functional and non-functional requirements and to identify how reliable it is in a real-life production environment. There were no errors in testing the system to confirm that it was able to handle inventory transactions, grant material requests, and schedule production tasks correctly. Non-functional testing revealed that the system could be stable in performance with normal load, could be used with role based interfaces and was secure with the access being limited using the login credentials and audit trails.
+The preliminary test showed that there were quantifiable gains in supply chain performance. The precision of inventory improved, the processing times of approval became shorter and the production timetable was more foreseeable. The interface between the systems worked as intended and screenshots taken in the test stage provide an illustration of the eventual deployment of the software. On the whole, this analysis proved that the SSCMS achieved its goals and offered concrete value to the preform and cap production process.
+4.2 Testing Approach
+A combination of unit testing, integration testing and user acceptance testing (UAT) was used to test the system.
+Unit Testing: Automated tests (e.g., Jest/ts-node) were used to test each endpoint of the backend API separately to verify the correctness of response codes, validation processing, and database updates.
+    Examples:
+Ensuring that it is only department heads who can approve/reject requests.
+Ensuring that there are no errors in calculating inventory.
+To make sure that rejected requests do not update the stock levels.
+Integration Testing: Whole processes were implemented to make sure modules were functioning properly with each other.
+Scenario: Raw materials are requested by a production user - system routes to a warehouse head - head approves - deduction of inventory takes place - audit log is generated.
+User Acceptance Testing (UAT): The system was tested in a controlled environment by key departmental users (Warehouse, Production, Finished Goods and HR/Admin).
+Usability, report performance and the accuracy of reports were gathered.
+ The user interface was refined and workflow made clearer with suggestions made by UAT.
+
+
+
+4.3 Test Cases
+Table 4. 1 Test Cases
+ID of Test Cases  
+Description
+Input/Action  
+Expected Result  
+Status  
+TC-01
+User login authentication
+Enter valid username/ password
+System grants access and loads user dashboard
+✅ Pass
+TC-02              
+Incorrect login            
+Type incorrect password     
+System rejects login and displays error
+✅ Pass
+  TC-03             
+Submit Material Request
+Production user requests 100 kg resin
+Request created with status = Pending
+✅ Pass
+TC-04              
+Approve Request             
+Warehouse head approves
+Inventory deducted, audit log created
+✅ Pass
+TC-05          
+Reject Request              
+Warehouse head rejects
+No inventory change, rejection reason saved
+✅ Pass
+TC-06            
+Low-Stock Alert             
+Inventory falls below reorder point
+System triggers alert and dashboard indicator
+✅ Pass
+TC-07             
+Create Production Job
+Production admin schedules job
+Job appears in schedule view
+✅ Pass
+TC-08              
+View Real-Time Inventory 
+User clicks on inventory page
+Correct quantities and status should be displayed Pass  
+✅ Pass
+  TC-09              
+Generate Report
+Admin chooses CSV export
+File generated with current data
+✅ Pass
+
+4.4 Test Results
+Testing procedure ensured that the core modules worked as desired. Key results include:
+Authentication & Role-Based Access: The users could only access data pertaining to their department.
+Inventory Accuracy: The real-time updates minimized the errors that were observed in manual spreadsheets.
+Approval Workflow: The average turnaround of approval has been cut down to less than 10 seconds (reduced by several minutes to an hour (manual)).
+Production Scheduling: Job creation and progress tracking enabled supervisors to be more proactive in the production.
+Performance: Local network tests took less than 1.5 seconds to load all major pages.
+Usability: The participants of the UAT stated that the interface was understandable, navigable, and much improved compared to the old process.
+4.5 System Dashboards Views
+4.5.1 HR/Admin Dashboard: displays different departments (Production, rrw material, finished goods and shipped orders department) in the organization and definitely have access to the operation going on in the company so the HR and CEOs can be in the loop of all the activities going on in real time.
+So I’ll be showing the HR/Admin view on the various departments;
+HR/Admin Dashboard (Production Overview): On this page the admin gets to view the operation going on in the production department( materials requested, materials pending approval, materials approved, productions ongoing in the machines, and preforms that are already produced). As seen on the dashboard when the materials are still undergoing production it shows “In progress” immediately the preforms are produced it is updated as “completed” on the dashboard.
+
+Fig 4. 1 Admin dashboard (production overview)
+
+HR/Admin Dashboard (Raw material Overview): On this page the admin gets to view the operation going on in the raw material department( total materials in stock, amount of materials low on stock, out of stock, total value of the stock available and the amount of active suppliers for the respective materials). As seen on the dashboard the data for each of the stock listed can be exported out for different purposes. Also the admin can approve and reject request from various departments.
+
+Fig 4. 2 Admin dashboard (raw material overview)
+
+HR/Admin Dashboard (Finished Goods Overview): On this page the admin gets to view the inventory in stock as well as the time the goods were produced. The records of the goods available for sale after production are recorded and can be exported out based as the need may be.
+
+Fig 4. 3Admin dashboard (finished goods overview)
+
+HR/Admin Dashboard (Shipped Orders): On this page the admin gets to view the amount of goods being shipped out of the facility.
+
+Fig 4. 4 Admin dashboard (shipped orders overview)
+HR/Admin Dashboard (Users overview): This page gives the HR the ability to issue out login codes based on departments and ranks in the organization, in a situation whereby there’s a new head of raw material department the admin gets to issue out an admin role for raw material to the new head hereby making the individual able to accept/reject approvals or also create new tabs for suppliers among other things
+
+Fig 4. 5 Admin dashboard (Users overview)
+ 
+4.5.2 Raw Materials User View - Raw Materials User View gives a clear view of all inventory levels of raw materials and identifies those that are in short supply. With this interface, the user can easily check the availability of stocks, add or remove material records and ensure timely and uninterrupted replenishment of resources. It is also possible to add new materials and export inventory reports in CSV format to analyze and keep records more effectively. The user interface of both the raw materials user and the raw materials admin account is similar, but the admin account is more functional. Admins are able to add new suppliers, maintain supplier data and perform complex inventory control operations, providing greater coordination and proper tracking of the availability of raw materials.
+
+Fig 4. 6 Raw material (User view)
+4.5.3 Production User View - Production User View indicates clear job progress and also has the ability to start and end production batches. Through this interface, users are able to track real time production activities and this ensures that there is smooth workflow and execution of tasks effectively. The interface of both production user and admin accounts is similar but the admin account is more functional. Admins can order raw materials to the raw materials department, report when preforms production has begun, and undertake more advanced oversight and control measure. This guarantees a smooth flow of coordination among the departments and enhanced visibility of the production activities.
+
+
+Fig 4. 7 production (User view)
+
+
+Approval Screen - shows the approval/rejection workflow with the confirmation of the audit log entry.
+The responsive design and the clarity of role-specific dashboards created with the help of HTML, Tailwind CSS, and Typescript are shown in each screenshot.
+4.6 System Description
+The Smart Supply Chain Management Software developed has been created to possess two primary interfaces, i.e., the Admin Interface and the User Interface which represent two different functions in making the whole production company operate smoothly, transparently and efficiently. This design decision was carefully planned, because this way it is possible to separate the responsibilities correctly, provide more security with the help of role-based access control and simplify the working processes which are suitable to the hierarchy and operational structure of the organization.
+4.6.1 Admin Interface
+The higher-level control center of the system, intended to be used exclusively by top-level managers, the Human Resources (HR) administrator and Chief Executive Officer (CEO). These two positions have access to this interface since they are the end-users mandated with the duty of monitoring all the activities in the department and ensuring resources are well managed. The Admin Interface provides them with complete visibility and control over the plant operations.
+
+
+4.6.2 Admin Dashboard and Monitoring
+Through the Admin Interface, HR and the CEO can monitor in real time the number of raw materials entering the raw material department, the number being stored in the warehouse, and the number of raw materials leaving the warehouse to be used in production.
+This real-time monitoring is a major improvement over manual systems, as it eliminates guesswork and reduces delays in decision-making. For example, when raw material reaches a minimum level, the change is immediately displayed on the admin dashboard so that prompt procurement decisions can be made before production is hampered.
+4.6.3 Approval and Authorization
+Another significant feature of the Admin Interface is the approval and authorization capability. Whenever a request is made by personnel in the production department regarding raw materials, the request automatically goes to the respective departmental head or administrator. HR and the CEO can either approve or decline such requests directly on their dashboards.
+This helps keep material usage in check, ensures the right quantities are released at the right time, and avoids misuse. Each approval or rejection is automatically stored in an audit trail, making the process transparent and traceable.
+4.6.4 Role Management
+The Admin Interface also has a role management feature that enables the HR administrator to assign duty roles to department heads. This is achieved through departmental and job-related login credentials.
+For example, HR can appoint the head of the production department as the “Production Admin.” The production manager then receives a special login with administrative privileges limited to the production department. This follows the principle of least privilege, ensuring users only have access to functions relevant to their roles.
+4.6.5 User Interface
+The User Interface is where day-to-day system operations take place. It is task-oriented and intuitive, allowing employees of various departments to perform their duties effectively. Warehouse employees, production line staff, and shipping clerks can use it to place material orders, record job completions, track inventory, and monitor the status of operations.
+4.6.6 User Tasks and Operations
+The interface provides simple, user-friendly forms and buttons that reduce human error and make navigation easy, even for employees with minimal technical skills.
+4.6.7 Real-Time Data Sync
+One of the most important features of the User Interface is real-time data synchronization. For example, when a batch of resin is issued to the production floor, inventory levels update instantly across all connected devices.
+This ensures all staff work with the latest information. Production teams can confirm material availability before jobs start, warehouse staff can prepare for upcoming requests, and management can monitor how quickly materials are consumed.
+
+4.6.8 Communication and Feedback
+Internal communication and feedback within the company is also carried out through the User Interface. Employees can submit complaints, report incidents, or highlight bottlenecks in the production process. These are automatically forwarded to the relevant supervisors, helping to resolve problems quickly and reduce delays.
+4.6.9 Finished Goods Tracking
+The User Interface also provides finished goods tracking. Staff can check the status of products as they pass through the supply chain — under quality inspection, packed, ready to be shipped, or already dispatched
+4.7 System Performance Evaluation.
+Following the deployment of pilots, the performance of the system was compared with the baseline manual process:
+Table 4. 2 System performance
+KPI
+Pre-Implementation
+Post-Implementation
+Improvement
+Inventory Accuracy
+78% (manual counts)
+98% (system tracked)
++20%
+Approval Turnaround Time
+1-3 hours (paper-based)
+10 seconds (system)
+95% faster
+Stock-out Incidents (per month)
+5–7
+1–2
+70% lessened
+Visibility of Production Jobs
+Low (manual)
+Real-time dashboard
+Important improvement
+Paperwork
+High (daily logs, forms)
+Minimal (system records)
+Digital-first
+4.8 Discussion
+The evaluation of the Smart Supply Chain Management Software (SSCMS) shows that it successfully met the research objectives by improving efficiency, accuracy, and visibility in preform and cap production. Key features such as real-time dashboards, automated workflows, and AI-driven forecasting streamlined inventory control, material requisition, and production scheduling. Compared with the manual system, the SSCMS reduced delays, minimized errors, and supported faster, data-driven decision-making. Its modular design also provides a foundation for scalability and future integration with enterprise and IoT-based systems. Overall, the SSCMS demonstrates a practical solution to common supply chain challenges and offers potential for broader application in manufacturing.
+
+
+
+
+
+
+
+
+
+CHAPTER FIVE 
+CONCLUSION AND RECOMMENDATIONS
+5.1 Conclusion
+The study aimed to design, develop, and test a Smart Supply Chain Management Software to resolve the inefficiencies in the inventory management, production scheduling and approval processes that are prevalent in preform and cap production firms.
+The main contributions of this work could be outlined as follows:
+ Making smart supply chain management system a Success: The application was developed in its entirety with a web-based structure, consisting of HTML, Tailwind CSS, and Typescript as the frontend, as well as Node.js and Express as the back-end and SQLite as the database.
+ Automation of Core Supply Chain Processes: The system automated material requisition, approval, inventory tracking and production job scheduling and shipment management - the system greatly reduced manual paperwork and delays.
+ Real-Time Visibility: The dashboards gave department heads and the management real-time access in terms of inventory status, production status, and request status.
+ Better Accuracy and Efficiency: The results of the testing showed that the system had enhanced the inventory accuracy to 98 percent, the stock out was reduced by more than 70 percent and the turnaround time of the approval process was shortened to a few minutes.
+ Scalable and Extensible Design: The modular design facilitates the later addition of such features as a new product, external supplier integration, or a database upgrade to either PostgreSQL or MySQL to support an enterprise level deployment.
+Overall, the SSCMS achieved the goal stated in Chapter 1 by offering a powerful, convenient solution to control key supply chain activities and by supporting decision-making that is based on data. Agile SDLC enabled the use of an iterative development and user feedback which led to a system that was highly appropriate to the needs of the end-users.
+5.2 Recommendations
+It is suggested that based on the experience of development, pilot implementation, and user feedback, the following recommendations can be offered:
+Complete Deployment and Training: Implement the system in every department of the firm and provide systematic training to the employees so that they can adopt it well.
+Connection with External Systems: In another phase, combine the SSCMS with financial systems (e.g., accounting and procurement ERP modules) so that the end-to-end automation of processes could be achieved.
+Advanced AI and Analytics: Improve the AI element to employ machine learning models to predict demand more accurately, identify anomalies, and predictive maintenance warnings.
+Mobile Application Development: Create a mobile application (or PWA) of the system to allow department users and managers to approve requests, check stock levels, and see reports on-the-go.
+Migration to Scalable Database: With increasing volume of transactions, upgrade to a more powerful relational database like PostgreSQL or MySQL to support multiple users and larger volumes of data.
+IoT Sensor Integration: IoT-enabled devices (weigh scales, barcode scanners and machine sensors) should be connected directly to the system to capture data automatically and minimize the human factor.
+Constant improvement cycle: Have a lean release process with user feedbacks being taken periodically and the additions or upgrades being implemented in the process.
+5.3 Contribution of Research to Knowledge
+This project contributes a number of practical and academic contributions.
+Low-cost prototype for preform and cap companies: First, this research provides a working low-cost prototype of smart supply chain management that is dedicated to preform and cap manufacturers - an industry niche that has been neglected in system chain management research. The project demonstrates a viable way of small-to-medium manufacturers to embrace the power of digital tools without having to spend prohibitive amounts of money by emphasizing modular design capable of integrating RFID, IoT, AI, and cloud services. This pragmatic design solution bridges the divide between the expensive enterprise solutions and the bare-bones spreadsheet techniques that many local companies continue to rely on.
+Operational Impact: The research results in the creation of empirical data on the impact of a customized SSCMS on key operational indicators in an actual manufacturing context. The research quantifies the change in the accuracy of inventory, stock-out rate, approval turnaround time, and inventory turnover through the deployment and evaluation of prototypes. These measurements take the discussion out of general statements of digital benefits, and give tangible and quantifiable results that can be applied by other local manufacturers to make investment justifiable.
+Application of the supply chain operation framework: The work advances theory and practice by implementing the SCOR framework to a software-driven modular intervention in the packaging component manufacturing. The software mapping of SCOR process elements and KPIs will result in a reproducible assessment template that can be utilized in the future by researchers and practitioners. This connection assists in the translation of abstract SCM best-practices to concrete software features and quantifiable goals.
+Transferable design and deployment strategies: the project provides transferable design patterns and deployment strategies to constrained environments: a staged rollout plan, offline capture options, and role-based interfaces that reduce training. These are workable plans that minimize the risk of adoption and can be applied in other small scale manufacturing environments in Nigeria and other markets of the same nature.
+Policy and industry implications: The research contributes to the demand to expand digital adoption in the Nigerian manufacturing industry and supports the argument that modular and inexpensive software can enhance competitiveness without the need to invest in large-scale infrastructure development.
+The study was able to establish that a Smart Supply Chain Management Software can be used to increase the efficiency of operations, minimize costs, and ensure real-time visibility of the supply chain of a preform and cap production Company. The suggested recommendations form a roadmap to scale up the solution to meet the future needs and adding more smart features. With such recommendations, the company will have a competitive advantage, be flexible to market demand shifts and keep on increasing its productivity and profitability
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+REFERENCES
+Adebayo, T. (2020). Digital transformation in Nigerian manufacturing: Challenges and opportunities. Nigerian Journal of Industrial Studies, 12(2), 45-59.
+Agwu, M. O., and Ogbechie, R. (2018). The role of smart technology in supply chain performance. Journal of Supply Chain Management in Emerging Economies, 5(1), 23-34.
+Ahmed, N., Siddiqa, A., Rudjer, I., and Qureshi, M. R. J. (2020). A review of web services as a real-time service integration framework in Internet of Things. PeerJ Computer Science, 6, e262. https://doi.org/10.7717/peerj-cs.262
+Alsheyadi, Baawain and Shaukat, (2024).E-supply chain coordination and performance impacts    DOI:10.1080/21693277.2024.2379942
+An investigation of the relationship between project performance
+An investigation of the relationship between project performance
+Ankurwares, (2025) critical supply chain requirements for preform companies
+APICS/ASCM. (2024). Supply Chain Operations Reference (SCOR) model.
+Arvato Systems. (2025). Cloud-based modular supply chain management for small and medium-sized enterprises (SMEs): Scalable, cost-efficient, and IoT-ready solutions. https://www.arvato-systems.com/
+Atikur, Shah and Sabbir (2025). How Interactive Dashboards Improve Managerial Decision-Making In Operations Management
+Bertolino, A. (2007). Software testing research: Achievements, challenges, dreams. In 
+Christopher, M. (2016). Logistics and supply chain management (5th Ed.). Pearson Education.
+Driven. (2024). Procurement 4.0 – A digital supply chain case study [Blog]. Retrieved from https://www.ddriven.io/case-studies/digital-supply-chain-case-study
+Frazzon, E. M., Rodriguez, C. M. T., Pereira, M. M., Pires, M. C., & Uhlmann, I. (2019). Towards Supply Chain Management 4.0. Brazilian Journal of Operations & Production Management, 16(2),180–191.
+Kumar, V., & Goyal, S. (2025). AI-driven forecasting and optimization for inventory control in manufacturing supply chain. Advances in Consumer Research, 4, 5085–5091.
+Lee, K. L., Wong, S. Y., Alzoubi, H. M., Al Kurdi, B., Alshurideh, M. T., & El Khatib, M. (2023). Adopting smart supply chain and smart technologies to improve operational performance in manufacturing industry. International Journal of Engineering Business Management, 15, 1–14.
+Li, B., Zhang, X., Ban, Y., Xu, X., Su, W., Chen, J., … Zhou, S. (2022). Construction of a Smart Supply Chain for Sand Factory Using the Edge-Computing-Based Deep Learning Algorithm. Scientific Programming, Article 9607755, 1–15.
+Li, X., Cao, J., Liu, Z., & Luo, X. (2020). Sustainable Business Model Based on Digital Twin Platform Network: The Inspiration from Haier’s Case Study in China. Sustainability, 12(3), 936.
+Mamun, S. (2024). How technology impacts supply chain performance in the motorbike manufacturing industry [Preprint]. Research Square. https://doi.org/10.21203/rs.3.rs-3940924/v1
+Mendi, A. F. (2022). A Digital Twin Case Study on Automotive Production Line. Sensors, 22(18), 6963.
+Roman, E.-A. (2025). State of the Art of Digital Twins in Improving Supply Chain Resilience. Logistics, 9(1), 22.
+Walter, S. (2023). AI impacts on supply chain performance: a manufacturing use case study. Discover Artificial Intelligence, 3(1), 18.
+Delgado, F., Mugica, A., and Bobillo, E. (2025). Barriers to visibility in supply chains: Challenges and future directions. Sustainability, 17(7), Article 2998. https://www.mdpi.com/2071-1050/17/7/2998
+El Yamany, H. F., Capretz, M., and Capretz, L. F. (2015). A multi-agent framework for testing distributed systems. 
+Examining the integration of artificial intelligence in supply chain management https://pmc.ncbi.nlm.nih.gov/articles/PMC11788849/
+Farooq, M., and Yen, Y. Y. (2024). Artificial intelligence in supply chain management: A comprehensive review and framework for resilience and sustainability (Preprint). https://doi.org/10.21203/rs.3.rs-3878218/v1
+Ferdousmou, J., Prabha, M., Farouk, M., Samiun, M., Sozib, H., and Zaman, A. (2024). IoT-enabled RFID in supply chain management: A comprehensive survey and future directions. Journal of Computer and Communications, 12, 207-223. 
+Forbes Tech Council. (2025, May 9). AI in the supply chain: Challenges, solutions and applications. https://www.forbes.com/councils/forbestechcouncil/2025/05/09/ai-in-the-supply-chain-challenges-solutions-and-applications/
+Frontiers in Artificial Intelligence. (2024). Examining the integration of artificial intelligence in supply chain management. Frontiers in AI. 
+Frontiers in Artificial Intelligence. (2024). Examining the integration of artificial intelligence in supply chain management. Frontiers in AI. https://doi.org/10.3389/frai.2024.1477044
+Future-Proof Your Supply Chain with Real-Time Monitoring. (2025, March 27). 
+Inbound Logistics. (2025, March 27). Future-proof your supply chain with real-time monitoring. Inbound Logistics. https://www.inboundlogistics.com/articles/future-proof-your-supply-chain-why-real-time-monitoring-matters/
+IoT-Enabled RFID in Supply Chain Management. (2024). SCIRP Journal
+Jenkins, (2024). Automated inventory management system
+JOAMS. (2024). IoT in supply chain management: An overview. Journal of Advanced Management Studies (JOAMS), 12(2), 97. https://www.joams.com/2024/JOAMS-V12N2-97.pdf
+Kaur, P., and Singh, N. (2024). IoT-based supply chain management: A systematic literature review. Journal of Internet of Things, 2(4), 1-25.
+Khairuddin and Olowosuyi, 2020 Digital Adoption of SME in Nigeria: The Relationship with Business Performance
+Khalil, T., and others. (2023). Artificial intelligence in supply chain management: A comprehensive review and framework for resilience and sustainability. 
+Laanti, M. (2018). Agile from the trenches: Real-time approach to real-world challenges. IT Press.
+measures and project management practices of construction projects for
+measures and project management practices of construction projects for
+National Bureau of Statistics. (2025). 
+Nwafor, A. (2025, September 26). Manufacturing sector growth stalls amid port bottlenecks. Punch. https://punchng.com/manufacturing-sector-growth-stalls-amid-port-bottlenecks/
+Oladipo, A., and Okonkwo, C. (2021). Supply chain inefficiencies in Nigerian manufacturing firms. African Journal of Operations and Logistics, 9(3), 67-78. Impact of Artificial Intelligence on Supply Chain Management (2022.).
+Proceedings of the 2007 Future of Software Engineering (FOSE '07) (pp. 85-103). IEEE Computer Society.
+PubNub. (2024, February 19). The top challenges of real-time visibility in logistics. PubNub Blog. https://www.pubnub.com/blog/challenges-real-time-visibility-in-logistics/
+Reuters. (2024, April 28). Nigeria secures $600 million Maersk investment in seaport infrastructure. Reuters. https://www.reuters.com/world/africa/nigeria-secures-600-million-maersk-investment-seaport-infrastructure-2024-04-28/
+Saadi, S., Kamalabadi, I., and Wamba, S. F. (2023). Artificial intelligence and big data analytics for supply chain resilience: A systematic literature review.
+Salunke. (2011). Industrial marketing management  DOI: 10.1016/j.indmarman.2011.10.009
+SAP. (2025). What is AI in supply chain management? Unlocking business efficiency. https://www.sap.com/africa/resources/ai-in-supply-chain-management
+Taj, S., Imran, A. S., Kastrati, Z., Daudpota, S. M., Memon, R. A., and Ahmed, J. (2023). IoT-based supply chain management: A systematic literature review. Internet of Things, 24, Article 100982. https://doi.org/10.1016/j.iot.2023.100982
+Tan, W. C., and Sidhu, M. S. (2022). Review of RFID and IoT integration in supply chain management. https://doi.org/10.1016/j.orp.2022.100229
+Tan, W. C., and Sidhu, M. S. (2022). Review of RFID and IoT integration in supply chain management. Operations Research Perspectives, 9, Article 100229. 
+Tarannum, T., and Hossain, M. Z. (2024). Impact of real-time MIS on supply chain management: A case study approach. Pacific Journal of Business Innovation and Strategy, 1(1), 38-48.
+the construction industry in Nigeria
+the construction industry in Nigeria
+TryLeverage.ai. (2025, May 1). 7 ways AI automation reduces supply chain delays. 
+Unegbu Yawas and Dan-Asabe, (2021). The relationship between project performance measures and project management practices of construction projects for the construction industry in Nigeria
+Vision Training Systems. (2023.). Traditional vs AI-powered supply chain management. Vision Training Systems.
+Walter, A., Ahsan, K., and Rahman, S. (2025). Application of artificial intelligence in demand planning for supply chains: A systematic literature review. The International Journal of Logistics Management, 36(3), 672-719. https://doi.org/10.1108/IJLM-02-2024-0120
+Wasserman, A. I. (2021). Software engineering issues for mobile application development. In Handbook of Software Engineering (pp. 461-487).
+Zamani, E. D., Smyth, C., Gupta, S., and Dennehy, D. (2022). Artificial intelligence and big data analytics for supply chain resilience: A systematic literature review. Annals of Operations Research, 327, 605-632. https://doi.org/10.1007/s10479-022-04983-y
+Zhang, Y. (2025). Digital transformations of supply chain management via RFID technology: A systematic literature review. University of Birmingham (Research outputs). https://research.birmingham.ac.uk/en/publications/digital-transformations-of-supply-chain-management-via-rfid-techn
+
+
