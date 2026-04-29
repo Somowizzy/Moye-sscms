@@ -215,9 +215,9 @@ window.DashboardComponent = {
     try {
       window.showToast('Generating report...', 'info');
       
-      const response = await fetch(\`/api/reports/export/\${type}\`, {
+      const response = await fetch(`/api/reports/export/${type}`, {
         headers: {
-          'Authorization': \`Bearer \${window.api.token}\`
+          'Authorization': `Bearer ${window.api.token}`
         }
       });
       
@@ -227,7 +227,7 @@ window.DashboardComponent = {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = \`\${type}_report_\${new Date().toISOString().split('T')[0]}.csv\`;
+      a.download = `${type}_report_${new Date().toISOString().split('T')[0]}.csv`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
